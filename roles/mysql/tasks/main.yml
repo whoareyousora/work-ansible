@@ -1,5 +1,5 @@
 - name: install mysql
-  apt:
+  dnf:
     name: mysql-server
     state: present
 
@@ -7,4 +7,4 @@
   template:
     src: my.cnf.j2
     dest: /etc/mysql/my.cnf
-  notify: restart mysql
+  notify: Restart MySQL

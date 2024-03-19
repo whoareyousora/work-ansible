@@ -1,5 +1,5 @@
 - name: install nginx
-  apt:
+  dnf:
     name: nginx
     state: present
 
@@ -7,6 +7,6 @@
   template:
     src: nginx.conf.j2
     dest: /etc/nginx/nginx.conf
-  notify: reload nginx
+  notify: Reload Nginx
 
 
