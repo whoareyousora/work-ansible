@@ -1,0 +1,38 @@
+user www-data;
+worker_processes auto;
+error_log /var/log/nginx/error.log
+pid /run/nginx.pid
+
+events {
+  worker_connections 768;
+}
+
+http {
+  sendfile on;
+  tcp_nopush on;
+  tcp_nodelay on; 
+  keepalive_timeout 65;
+  types_hash_max_size 2048;
+
+  icnlude /etc/nginx/mime.types;
+  defult_type application/octet-stream;
+
+  access_log /var/log/nginx/access.log
+
+  gzip on;
+  gzip_disable "msie6";
+
+  server {
+    listen {{ nginx_port }} default_server;
+    listen [::]:{{ nginx_port }} default_server;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name localhost;
+
+    location / {
+      try_files $uri $uri/ =404;
+    }
+  }
+}

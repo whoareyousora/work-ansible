@@ -1,0 +1,19 @@
+- name: install gitlab dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+
+  with_items:
+    - curl
+    - openssh-server
+    - ca-certificates
+    - postfix
+
+- name: install gitlab
+  shell: curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash && sudo apt-get install gitlab-ce
+
+- name: copy gitlab conf file
+  template:
+    src: gitlab.rb.j2
+    dest: /etc/gitlab/gitlab.rb
+  notify: reconfigure gitlab

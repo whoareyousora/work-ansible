@@ -1,0 +1,10 @@
+- name: install mysql
+  apt:
+    name: mysql-server
+    state: present
+
+- name: copy mysql conf file
+  template:
+    src: my.cnf.j2
+    dest: /etc/mysql/my.cnf
+  notify: restart mysql

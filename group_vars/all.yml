@@ -1,0 +1,4 @@
+gitlab_external_url: "http://localhost"
+gitlab_port: 8080
+gitlab_admin_username: "admin"
+gitlab_admin_password: "supersecurepassword"

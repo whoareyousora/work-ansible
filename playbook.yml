@@ -1,0 +1,8 @@
+- name: deploy gitlab
+  hosts: gitlab_servers
+  become: true
+
+  roles:
+    - nginx
+    - mysql
+    - gitlab
