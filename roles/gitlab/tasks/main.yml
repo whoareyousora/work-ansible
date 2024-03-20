@@ -1,5 +1,5 @@
 - name: install gitlab dependencies
-  dnf:
+  apt:
     name: "{{ item }}"
     state: present
 
@@ -10,7 +10,7 @@
     - postfix
 
 - name: install gitlab
-  shell: curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash && sudo dnf install gitlab-ce
+  shell: curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash && sudo apt install gitlab-ce
 
 - name: copy gitlab conf file
   template:
